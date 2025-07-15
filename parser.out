@@ -1,0 +1,405 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> body
+Rule 1     body -> body sentence
+Rule 2     body -> sentence
+Rule 3     sentence -> PRINT LPAREN print_args RPAREN SEMICOLON
+Rule 4     sentence -> ID EQUALS factor SEMICOLON
+Rule 5     sentence -> COMMENT
+Rule 6     print_args -> print_args COMMA factor
+Rule 7     print_args -> factor
+Rule 8     factor -> LBRACKET elementos RBRACKET
+Rule 9     elementos -> elementos COMMA factor
+Rule 10    elementos -> factor
+Rule 11    elementos -> empty
+Rule 12    factor -> INTEGER
+Rule 13    factor -> FLOAT
+Rule 14    factor -> STR
+Rule 15    factor -> TRUE
+Rule 16    factor -> FALSE
+Rule 17    factor -> ID
+Rule 18    empty -> <empty>
+
+Terminals, with rules where they appear
+
+COMMA                : 6 9
+COMMENT              : 5
+EQUALS               : 4
+FALSE                : 16
+FLOAT                : 13
+ID                   : 4 17
+INTEGER              : 12
+LBRACKET             : 8
+LPAREN               : 3
+PRINT                : 3
+RBRACKET             : 8
+RPAREN               : 3
+SEMICOLON            : 3 4
+STR                  : 14
+TRUE                 : 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+body                 : 1 0
+elementos            : 8 9
+empty                : 11
+factor               : 4 6 7 9 10
+print_args           : 3 6
+sentence             : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . body
+    (1) body -> . body sentence
+    (2) body -> . sentence
+    (3) sentence -> . PRINT LPAREN print_args RPAREN SEMICOLON
+    (4) sentence -> . ID EQUALS factor SEMICOLON
+    (5) sentence -> . COMMENT
+
+    PRINT           shift and go to state 3
+    ID              shift and go to state 4
+    COMMENT         shift and go to state 5
+
+    body                           shift and go to state 1
+    sentence                       shift and go to state 2
+
+state 1
+
+    (0) S' -> body .
+    (1) body -> body . sentence
+    (3) sentence -> . PRINT LPAREN print_args RPAREN SEMICOLON
+    (4) sentence -> . ID EQUALS factor SEMICOLON
+    (5) sentence -> . COMMENT
+
+    PRINT           shift and go to state 3
+    ID              shift and go to state 4
+    COMMENT         shift and go to state 5
+
+    sentence                       shift and go to state 6
+
+state 2
+
+    (2) body -> sentence .
+
+    PRINT           reduce using rule 2 (body -> sentence .)
+    ID              reduce using rule 2 (body -> sentence .)
+    COMMENT         reduce using rule 2 (body -> sentence .)
+    $end            reduce using rule 2 (body -> sentence .)
+
+
+state 3
+
+    (3) sentence -> PRINT . LPAREN print_args RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 7
+
+
+state 4
+
+    (4) sentence -> ID . EQUALS factor SEMICOLON
+
+    EQUALS          shift and go to state 8
+
+
+state 5
+
+    (5) sentence -> COMMENT .
+
+    PRINT           reduce using rule 5 (sentence -> COMMENT .)
+    ID              reduce using rule 5 (sentence -> COMMENT .)
+    COMMENT         reduce using rule 5 (sentence -> COMMENT .)
+    $end            reduce using rule 5 (sentence -> COMMENT .)
+
+
+state 6
+
+    (1) body -> body sentence .
+
+    PRINT           reduce using rule 1 (body -> body sentence .)
+    ID              reduce using rule 1 (body -> body sentence .)
+    COMMENT         reduce using rule 1 (body -> body sentence .)
+    $end            reduce using rule 1 (body -> body sentence .)
+
+
+state 7
+
+    (3) sentence -> PRINT LPAREN . print_args RPAREN SEMICOLON
+    (6) print_args -> . print_args COMMA factor
+    (7) print_args -> . factor
+    (8) factor -> . LBRACKET elementos RBRACKET
+    (12) factor -> . INTEGER
+    (13) factor -> . FLOAT
+    (14) factor -> . STR
+    (15) factor -> . TRUE
+    (16) factor -> . FALSE
+    (17) factor -> . ID
+
+    LBRACKET        shift and go to state 11
+    INTEGER         shift and go to state 12
+    FLOAT           shift and go to state 13
+    STR             shift and go to state 14
+    TRUE            shift and go to state 15
+    FALSE           shift and go to state 16
+    ID              shift and go to state 17
+
+    print_args                     shift and go to state 9
+    factor                         shift and go to state 10
+
+state 8
+
+    (4) sentence -> ID EQUALS . factor SEMICOLON
+    (8) factor -> . LBRACKET elementos RBRACKET
+    (12) factor -> . INTEGER
+    (13) factor -> . FLOAT
+    (14) factor -> . STR
+    (15) factor -> . TRUE
+    (16) factor -> . FALSE
+    (17) factor -> . ID
+
+    LBRACKET        shift and go to state 11
+    INTEGER         shift and go to state 12
+    FLOAT           shift and go to state 13
+    STR             shift and go to state 14
+    TRUE            shift and go to state 15
+    FALSE           shift and go to state 16
+    ID              shift and go to state 17
+
+    factor                         shift and go to state 18
+
+state 9
+
+    (3) sentence -> PRINT LPAREN print_args . RPAREN SEMICOLON
+    (6) print_args -> print_args . COMMA factor
+
+    RPAREN          shift and go to state 19
+    COMMA           shift and go to state 20
+
+
+state 10
+
+    (7) print_args -> factor .
+
+    RPAREN          reduce using rule 7 (print_args -> factor .)
+    COMMA           reduce using rule 7 (print_args -> factor .)
+
+
+state 11
+
+    (8) factor -> LBRACKET . elementos RBRACKET
+    (9) elementos -> . elementos COMMA factor
+    (10) elementos -> . factor
+    (11) elementos -> . empty
+    (8) factor -> . LBRACKET elementos RBRACKET
+    (12) factor -> . INTEGER
+    (13) factor -> . FLOAT
+    (14) factor -> . STR
+    (15) factor -> . TRUE
+    (16) factor -> . FALSE
+    (17) factor -> . ID
+    (18) empty -> .
+
+    LBRACKET        shift and go to state 11
+    INTEGER         shift and go to state 12
+    FLOAT           shift and go to state 13
+    STR             shift and go to state 14
+    TRUE            shift and go to state 15
+    FALSE           shift and go to state 16
+    ID              shift and go to state 17
+    RBRACKET        reduce using rule 18 (empty -> .)
+    COMMA           reduce using rule 18 (empty -> .)
+
+    elementos                      shift and go to state 21
+    factor                         shift and go to state 22
+    empty                          shift and go to state 23
+
+state 12
+
+    (12) factor -> INTEGER .
+
+    RPAREN          reduce using rule 12 (factor -> INTEGER .)
+    COMMA           reduce using rule 12 (factor -> INTEGER .)
+    SEMICOLON       reduce using rule 12 (factor -> INTEGER .)
+    RBRACKET        reduce using rule 12 (factor -> INTEGER .)
+
+
+state 13
+
+    (13) factor -> FLOAT .
+
+    RPAREN          reduce using rule 13 (factor -> FLOAT .)
+    COMMA           reduce using rule 13 (factor -> FLOAT .)
+    SEMICOLON       reduce using rule 13 (factor -> FLOAT .)
+    RBRACKET        reduce using rule 13 (factor -> FLOAT .)
+
+
+state 14
+
+    (14) factor -> STR .
+
+    RPAREN          reduce using rule 14 (factor -> STR .)
+    COMMA           reduce using rule 14 (factor -> STR .)
+    SEMICOLON       reduce using rule 14 (factor -> STR .)
+    RBRACKET        reduce using rule 14 (factor -> STR .)
+
+
+state 15
+
+    (15) factor -> TRUE .
+
+    RPAREN          reduce using rule 15 (factor -> TRUE .)
+    COMMA           reduce using rule 15 (factor -> TRUE .)
+    SEMICOLON       reduce using rule 15 (factor -> TRUE .)
+    RBRACKET        reduce using rule 15 (factor -> TRUE .)
+
+
+state 16
+
+    (16) factor -> FALSE .
+
+    RPAREN          reduce using rule 16 (factor -> FALSE .)
+    COMMA           reduce using rule 16 (factor -> FALSE .)
+    SEMICOLON       reduce using rule 16 (factor -> FALSE .)
+    RBRACKET        reduce using rule 16 (factor -> FALSE .)
+
+
+state 17
+
+    (17) factor -> ID .
+
+    RPAREN          reduce using rule 17 (factor -> ID .)
+    COMMA           reduce using rule 17 (factor -> ID .)
+    SEMICOLON       reduce using rule 17 (factor -> ID .)
+    RBRACKET        reduce using rule 17 (factor -> ID .)
+
+
+state 18
+
+    (4) sentence -> ID EQUALS factor . SEMICOLON
+
+    SEMICOLON       shift and go to state 24
+
+
+state 19
+
+    (3) sentence -> PRINT LPAREN print_args RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 25
+
+
+state 20
+
+    (6) print_args -> print_args COMMA . factor
+    (8) factor -> . LBRACKET elementos RBRACKET
+    (12) factor -> . INTEGER
+    (13) factor -> . FLOAT
+    (14) factor -> . STR
+    (15) factor -> . TRUE
+    (16) factor -> . FALSE
+    (17) factor -> . ID
+
+    LBRACKET        shift and go to state 11
+    INTEGER         shift and go to state 12
+    FLOAT           shift and go to state 13
+    STR             shift and go to state 14
+    TRUE            shift and go to state 15
+    FALSE           shift and go to state 16
+    ID              shift and go to state 17
+
+    factor                         shift and go to state 26
+
+state 21
+
+    (8) factor -> LBRACKET elementos . RBRACKET
+    (9) elementos -> elementos . COMMA factor
+
+    RBRACKET        shift and go to state 27
+    COMMA           shift and go to state 28
+
+
+state 22
+
+    (10) elementos -> factor .
+
+    RBRACKET        reduce using rule 10 (elementos -> factor .)
+    COMMA           reduce using rule 10 (elementos -> factor .)
+
+
+state 23
+
+    (11) elementos -> empty .
+
+    RBRACKET        reduce using rule 11 (elementos -> empty .)
+    COMMA           reduce using rule 11 (elementos -> empty .)
+
+
+state 24
+
+    (4) sentence -> ID EQUALS factor SEMICOLON .
+
+    PRINT           reduce using rule 4 (sentence -> ID EQUALS factor SEMICOLON .)
+    ID              reduce using rule 4 (sentence -> ID EQUALS factor SEMICOLON .)
+    COMMENT         reduce using rule 4 (sentence -> ID EQUALS factor SEMICOLON .)
+    $end            reduce using rule 4 (sentence -> ID EQUALS factor SEMICOLON .)
+
+
+state 25
+
+    (3) sentence -> PRINT LPAREN print_args RPAREN SEMICOLON .
+
+    PRINT           reduce using rule 3 (sentence -> PRINT LPAREN print_args RPAREN SEMICOLON .)
+    ID              reduce using rule 3 (sentence -> PRINT LPAREN print_args RPAREN SEMICOLON .)
+    COMMENT         reduce using rule 3 (sentence -> PRINT LPAREN print_args RPAREN SEMICOLON .)
+    $end            reduce using rule 3 (sentence -> PRINT LPAREN print_args RPAREN SEMICOLON .)
+
+
+state 26
+
+    (6) print_args -> print_args COMMA factor .
+
+    RPAREN          reduce using rule 6 (print_args -> print_args COMMA factor .)
+    COMMA           reduce using rule 6 (print_args -> print_args COMMA factor .)
+
+
+state 27
+
+    (8) factor -> LBRACKET elementos RBRACKET .
+
+    RPAREN          reduce using rule 8 (factor -> LBRACKET elementos RBRACKET .)
+    COMMA           reduce using rule 8 (factor -> LBRACKET elementos RBRACKET .)
+    SEMICOLON       reduce using rule 8 (factor -> LBRACKET elementos RBRACKET .)
+    RBRACKET        reduce using rule 8 (factor -> LBRACKET elementos RBRACKET .)
+
+
+state 28
+
+    (9) elementos -> elementos COMMA . factor
+    (8) factor -> . LBRACKET elementos RBRACKET
+    (12) factor -> . INTEGER
+    (13) factor -> . FLOAT
+    (14) factor -> . STR
+    (15) factor -> . TRUE
+    (16) factor -> . FALSE
+    (17) factor -> . ID
+
+    LBRACKET        shift and go to state 11
+    INTEGER         shift and go to state 12
+    FLOAT           shift and go to state 13
+    STR             shift and go to state 14
+    TRUE            shift and go to state 15
+    FALSE           shift and go to state 16
+    ID              shift and go to state 17
+
+    factor                         shift and go to state 29
+
+state 29
+
+    (9) elementos -> elementos COMMA factor .
+
+    RBRACKET        reduce using rule 9 (elementos -> elementos COMMA factor .)
+    COMMA           reduce using rule 9 (elementos -> elementos COMMA factor .)
+
