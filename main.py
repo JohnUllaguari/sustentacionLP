@@ -45,19 +45,19 @@ def p_factor_valor(p):
               | ID'''
     pass
 
-# Regla para vacío (lista vacía, argumentos vacíos)
+# Regla para vacío
 def p_empty(p):
     'empty :'
     pass
 
-# Regla de manejo de errores de sintaxis
+# Error rule for syntax errors
 def p_error(p):
     print("Error de sintaxis")
 
-# Construir el parser
+
 parser = yacc.yacc()
 
-# Ciclo principal para ingresar código y analizarlo
+
 while True:
     try:
         s = input('sustentación > ')
