@@ -1,5 +1,8 @@
 import ply.lex as lex
 
+# I M P O R T A N T E 
+# CADA LINEA DEBE TERMINAR CON UN PUNTO Y COMA (;)
+
 #tokensss
 tokens = (
     'INTEGER',

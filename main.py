@@ -1,6 +1,9 @@
 import ply.yacc as yacc
 from lexi import tokens
 
+# I M P O R T A N T E 
+# CADA LINEA DEBE TERMINAR CON UN PUNTO Y COMA (;)
+
 # Regla principal: permite varias sentencias separadas
 def p_body(p):
     '''body : body sentence
